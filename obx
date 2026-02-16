@@ -1,0 +1,19 @@
+# vim: ft=sh
+_obx() {
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    local args=( "${COMP_WORDS[@]:1:COMP_CWORD-1}" )
+    local level=1
+    local reply_raw
+
+    while :; do
+        reply_raw=$(obxsupport "${args[@]}" --t "$level" 2>/dev/null)
+        [[ -z $reply_raw ]] && break
+
+        mapfile -t COMPREPLY < <(printf '%s\n' "$reply_raw" | ob_py.py "$cur")
+        ((${#COMPREPLY[@]})) && break
+
+        ((level++))
+        ((level>10)) && break
+    done
+}
+complete -F _obx obx
