@@ -1,6 +1,6 @@
 # obx
 
-本项目由ayazumi基于oblivious开发 https://github.com/diyiliumin/oblivious 
+本项目由ayazumi基于 oblivionis 开发 https://github.com/diyiliumin/oblivionis 
 
 全称oblivionis executable
 
